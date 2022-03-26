@@ -20,6 +20,11 @@
             td5.setAttribute("class", "hide");
             const btn = document.createElement("button");
             btn.textContent = "X";
+            btn.id = number;
+            btn.onclick = function(){
+                const nomorId = btn.getAttribute("id");
+                deleteRow(nomorId);
+            }
             td5.appendChild(btn);
 
         
@@ -47,6 +52,14 @@
     
             tableBody.appendChild(tr);
             number++;
+    }
+
+    function deleteRow(id){
+        const parent = document.getElementById(id);
+        parent.remove();
+
+
+        console.log(parent);
     }
 
     const jendela = window;
