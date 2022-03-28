@@ -1,72 +1,102 @@
-    let key = [];
+let key = [];
 
-    let number = 2;
+let number = 2;
 
-    function addRow(){
-        console.log("tab was pressed");
+function addRow(){
+    console.log("tab was pressed");
             
+    const tdNum = document.createElement("td");
+
+    let coba = document.querySelectorAll("#nomor");
+    console.log(coba);
+    if (coba.length !== 0){
+        tdNum.textContent = coba.length+2;
+    }else{
+        tdNum.textContent = number;
+    }
+    const tableBody = document.getElementById("tableBody");
+    const tr = document.createElement("tr");
+
+    tr.setAttribute("id", number);
+
+    tdNum.setAttribute("id", "nomor");
+    key.push(number);
+    const td2 = document.createElement("td");
+    const td3 = document.createElement("td");
+    const td4 = document.createElement("td");
+
+    const td5 = document.createElement("td");
+    td5.setAttribute("class", "hide");
+
+    const btn = document.createElement("button");
+    btn.textContent = "X";
+    btn.id = number;
+    btn.onclick = function(){
+    const nomorId = btn.getAttribute("id");
+    deleteRow(nomorId);
+    }
+    td5.appendChild(btn);
 
 
-            const tableBody = document.getElementById("tableBody");
-            const tr = document.createElement("tr");
-            const td = document.createElement("td");
-            tr.setAttribute("id", number);
-            td.textContent = number;
-            const td2 = document.createElement("td");
-            const td3 = document.createElement("td");
-            const td4 = document.createElement("td");
+    const input2 = document.createElement("input");
+    input2.setAttribute("type", "text");
+    input2.setAttribute("onclick", "this.select()");
 
-            const td5 = document.createElement("td");
-            td5.setAttribute("class", "hide");
-            const btn = document.createElement("button");
-            btn.textContent = "X";
-            btn.id = number;
-            btn.onclick = function(){
-                const nomorId = btn.getAttribute("id");
-                deleteRow(nomorId);
-            }
-            td5.appendChild(btn);
+    const input3 = document.createElement("input");
+    input3.setAttribute("type", "text");
+    input3.setAttribute("onclick", "this.select()");
 
-        
-            const input2 = document.createElement("input");
-            input2.setAttribute("type", "text");
-            input2.setAttribute("onclick", "this.select()");
-
-            const input3 = document.createElement("input");
-            input3.setAttribute("type", "text");
-            input3.setAttribute("onclick", "this.select()");
-
-            const input4 = document.createElement("input");
-            input4.setAttribute("type", "text");
-            input4.setAttribute("onclick", "this.select()");
+    const input4 = document.createElement("input");
+    input4.setAttribute("type", "text");
+    input4.setAttribute("onclick", "this.select()");
             
-           td2.appendChild(input2);
-           td3.appendChild(input3);
-           td4.appendChild(input4);
+   td2.appendChild(input2);
+   td3.appendChild(input3);
+   td4.appendChild(input4);
 
-           tr.appendChild(td);
-           tr.appendChild(td2);
-           tr.appendChild(td3);
-           tr.appendChild(td4);
-           tr.appendChild(td5);
+   tr.appendChild(tdNum);
+   tr.appendChild(td2);
+   tr.appendChild(td3);
+   tr.appendChild(td4);
+   tr.appendChild(td5);
     
-            tableBody.appendChild(tr);
-            number++;
+    tableBody.appendChild(tr);
+    number++;
+}
+
+function resetRow(){
+    let node = document.querySelectorAll("#nomor");
+
+    let index = node.length + 3;
+    console.log(index);
+
+    let index2 = 0;
+
+    for(let i = 2; i < index; i++){          
+        console.log('hi');
+        node[index2].textContent = i;
+        index2++;
     }
 
-    function deleteRow(id){
-        const parent = document.getElementById(id);
-        parent.remove();
+    index2 =0;
 
+}
 
-        console.log(parent);
+function deleteRow(id){
+    let parent = document.getElementById(id);
+    parent.remove();
+    key.pop();
+    
+    resetRow();
+
+    console.log(parent);
+}
+
+const jendela = window;
+const badan = document.getElementById("thisisbody");
+badan.onkeydown = function(event){
+    if(event.keyCode == 9){
+        addRow();
     }
-
-    const jendela = window;
-    const badan = document.getElementById("thisisbody");
-    badan.onkeydown = function(event){
-        if(event.keyCode == 9){
-            addRow();
-        }
         
-    }
+}
