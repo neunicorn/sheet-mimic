@@ -86,10 +86,12 @@ function deleteRow(id){
     let parent = document.getElementById(id);
     parent.remove();
     key.pop();
-    
+    console.log(key);
     resetRow();
 
     console.log(parent);
+
+
 }
 
 const jendela = window;
