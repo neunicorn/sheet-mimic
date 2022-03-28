@@ -1,17 +1,20 @@
     let key = [];
 
+    let row = 2;
+    let index = 0;
     let number = 2;
+    let numberArr = [];
 
     function addRow(){
         console.log("tab was pressed");
-            
 
+            numberArr.push(number);
 
             const tableBody = document.getElementById("tableBody");
             const tr = document.createElement("tr");
             const td = document.createElement("td");
-            tr.setAttribute("id", number);
-            td.textContent = number;
+            tr.setAttribute("id", row);
+            td.textContent = numberArr[index];
             const td2 = document.createElement("td");
             const td3 = document.createElement("td");
             const td4 = document.createElement("td");
@@ -20,7 +23,7 @@
             td5.setAttribute("class", "hide");
             const btn = document.createElement("button");
             btn.textContent = "X";
-            btn.id = number;
+            btn.id = row;
             btn.onclick = function(){
                 const nomorId = btn.getAttribute("id");
                 deleteRow(nomorId);
@@ -52,12 +55,20 @@
     
             tableBody.appendChild(tr);
             number++;
+            row++;
+            index++;
+    }
+
+    function refreshNumber(i){
+
     }
 
     function deleteRow(id){
         const parent = document.getElementById(id);
         parent.remove();
+        numberArr.splice(id-1, 1);
 
+        console.log(numberArr);
 
         console.log(parent);
     }
