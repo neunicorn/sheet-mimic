@@ -96,11 +96,31 @@ function deleteRow(id){
 
 }
 
+let x;
+let y;
+document.onclick = function(event){
+// console.log(event.clientX);
+// console.log(event.clientY);
+x = event.clientX;
+y = event.clientY;
+}
+
 const jendela = window;
 const badan = document.getElementById("thisisbody");
 badan.onkeydown = function(event){
     if(event.keyCode == 9){
-        addRow();
-    }
+        const table = document.getElementById("tableBody");
         
-}
+            if(x > 560){
+                addRow();
+            }
+        }
+    }
+
+
+// const print = function(){
+//     console.log(x);
+//     console.log(y);
+
+// }
+// setInterval(print, 1000);
